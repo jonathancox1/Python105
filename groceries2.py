@@ -42,7 +42,7 @@ Update the "Print Items" output so that it shows whether or not an item has been
 groceries = ['some', 'things', 'in', 'here']
 
 main_menu = '''
-
+---- Home Menu----
 1. Print List
 2. Add Items
 3. Edit Items
@@ -61,7 +61,7 @@ add_items_sub_menu = '''
 '''
 #EDIT ITEMS
 edit_items_sub_menu = '''
-
+---- Edit Items Menu---
 1. Print List
 2. Edit Single Item
 3. Edit Multiple Items
@@ -70,7 +70,7 @@ edit_items_sub_menu = '''
 '''
 #REMOVE ITEMS
 remove_items_sub_menu = '''
-
+---Remove Items Menu---
 1. Print List
 2. Remove Single Item
 3. Remove Multiple Items
@@ -89,7 +89,7 @@ while True:
         
     # 2. Add Items
     elif menu_choice == 2:
-        # Displays submenu
+        # Displays submenu and keeps user in submenu until break is met
         while True:
             add_items_choice = int(input(add_items_sub_menu))
             # Displays List
@@ -119,42 +119,82 @@ while True:
 
     # 3. Edit Items - brings up submenu
     elif menu_choice == 3:
-        # Displays submenu
-        edit_items_choice = int(input(add_items_sub_menu))
-        # Displays List
-        if edit_items_choice == 1:
-            for i in range(len(groceries)):
-                print(f'{i} - {groceries[i]}')
-        # Edits a Single Item
-        elif edit_items_choice == 2:
-            pass
-        # Edits Multiple Items
-        elif edit_items_choice == 3:
-            pass
-        # Return Home
-        elif edit_items_choice == 4:
-            pass 
+        # Displays submenu and keeps user in submen until break is met
+        while True:
+            edit_items_choice = int(input(edit_items_sub_menu))
+            # Displays List
+            if edit_items_choice == 1:
+                for i in range(len(groceries)):
+                    print(f'{i} - {groceries[i]}')
+            # Edits a Single Item
+            elif edit_items_choice == 2:
+                for i in range(len(groceries)):
+                    print(f'{i} - {groceries[i]}')
+                item_to_edit = int(input('Which item number would you like to edit? '))
+                y_or_n = input(f'You\'ve selected \'{groceries[item_to_edit]}\' is this correct y/n ')
+                if y_or_n != 'y':
+                    break
+                else:
+                    edited_item = input('What shall we change it to? ')
+                    groceries[item_to_edit] = edited_item
+            # Edits Multiple Items
+            elif edit_items_choice == 3:
+                for i in range(len(groceries)):
+                    print(f'{i} - {groceries[i]}')
+                starting_item_to_edit = int(input('Which item number would you like to start editing at? '))
+                ending_item_to_edit = int(input('Which item number would you like to end editing at? '))
+                # Cycle through, prompting the user to make edits while in predefined Slice
+                while starting_item_to_edit <= ending_item_to_edit:
+                    edit_with = input(f'What shall we replace \'{groceries[starting_item_to_edit]}\' with? ')
+                    groceries[starting_item_to_edit] = edit_with
+                    starting_item_to_edit += 1
+            # Return Home
+            elif edit_items_choice == 4:
+                break 
     
     # 4. Remove Items - brings up submenu
     elif menu_choice == 4:
-        # Displays submenu
-        remove_item_choice = int(input(add_items_sub_menu))
-        # Displays List
-        if remove_item_choice == 1:
-            for i in range(len(groceries)):
-                print(f'{i} - {groceries[i]}')
-        # Remove a Single Item
-        elif remove_item_choice == 2:
-            pass
-        # Remove Multiple Items
-        elif remove_item_choice == 3:
-            pass
-        # Print Removed Items List
-        elif remove_item_choice == 4:
-            pass
-        # Return Home
-        elif remove_item_choice == 5:
-            pass
+        # Displays submenu and keeps user in submenu until break is met
+        while True:
+            remove_item_choice = int(input(remove_items_sub_menu))
+            # Displays List
+            if remove_item_choice == 1:
+                for i in range(len(groceries)):
+                    print(f'{i} - {groceries[i]}')
+            # Remove a Single Item
+            elif remove_item_choice == 2:
+                for i in range(len(groceries)):
+                    print(f'{i} - {groceries[i]}')
+                item_to_remove = int(input('Which item number would you like to remove? '))
+                y_or_n = input(f'You\'ve selected \'{groceries[item_to_remove]}\' is this correct y/n ')
+                if y_or_n != 'y':
+                    break
+                else:
+                    del groceries[item_to_remove]
+            # Remove Multiple Items
+            elif remove_item_choice == 3:
+                for i in range(len(groceries)):
+                    print(f'{i} - {groceries[i]}')
+                starting_item_to_remove = int(input('Which item number would you like to start removing at? '))
+                ending_item_to_remove = int(input('Which item number would you like to end removing at? '))
+                # Cycle through, prompting the user to make edits while in predefined Slice
+                items_to_delete = []
+                while starting_item_to_remove <= ending_item_to_remove:
+                    y_or_n = input(f'You\'ve selected \'{groceries[starting_item_to_remove]}\' to remove is this correct y/n ')
+                    if y_or_n != 'y':
+                        break
+                    else:
+                        ###### NEED TO ADD TRY EXCEPT TO EXCEPT INDEXERROR - index out of range
+                        del groceries[starting_item_to_remove]
+                        print(groceries)
+                    starting_item_to_remove += 1
+
+            # Print Removed Items List
+            elif remove_item_choice == 4:
+                pass
+            # Return Home
+            elif remove_item_choice == 5:
+                break
 
     # 5. Quit - exits program     
     else:
