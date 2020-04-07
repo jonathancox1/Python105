@@ -39,11 +39,11 @@ Update the "Print Items" output so that it shows whether or not an item has been
 '''
 
 
-groceries = ['some', 'things', 'in', 'here']
-removed_items = []
+groceries = ['one', 'two', 'three', 'four']
+removed_items = ['removed', 'removed', 'removed3']
 
 main_menu = '''
----- Home Menu----
+Home Menu------
 1. Print List
 2. Add Items
 3. Edit Items
@@ -53,16 +53,17 @@ main_menu = '''
 '''
 #ADD ITEMS
 add_items_sub_menu = '''
-----Add Items Menu---
+Add Items Menu------
 1. Print List
 2. Add Single Item
 3. Add Multiple Items
-4. Return Home
+4. Add Item from Removed List
+5. Return Home
 
 '''
 #EDIT ITEMS
 edit_items_sub_menu = '''
----- Edit Items Menu---
+Edit Items Menu------
 1. Print List
 2. Edit Single Item
 3. Edit Multiple Items
@@ -71,7 +72,7 @@ edit_items_sub_menu = '''
 '''
 #REMOVE ITEMS
 remove_items_sub_menu = '''
----Remove Items Menu---
+Remove Items Menu------
 1. Print List
 2. Remove Single Item
 3. Remove Multiple Items
@@ -79,7 +80,7 @@ remove_items_sub_menu = '''
 5. Return Home
 
 '''
-
+# Continues to promp the user with the main menu until 5(Exit) is entered
 while True:
     menu_choice = int(input(main_menu))
 
@@ -95,7 +96,7 @@ while True:
             add_items_choice = int(input(add_items_sub_menu))
             # Displays List
             if add_items_choice == 1:
-                print('The Current List:')
+                print('The Current List:------')
                 for i in range(len(groceries)):
                     print(f'{i} - {groceries[i]}')
             # Add a Single Item
@@ -114,6 +115,29 @@ while True:
                     else:
                         break
                 groceries += list_to_add 
+            elif add_items_choice == 4:
+                pass
+                # print('Removed Items List******')
+                # for i in range(len(removed_items)):
+                #     print(f'{i} - {removed_items[i]}')
+                # removed_item_to_add = int(input('Which item number would you like to add? '))
+
+
+                # ########## NEED TO ADD TRY EXCEPT IndexError ##########
+                # if removed_items[removed_item_to_add] not in removed_items:
+                #     not_in_removed = input('That item does not exist, press ENTER to continue ')
+                #     break
+                # else:
+                #     y_or_n = input(f'You\'ve selected \'{removed_items[removed_item_to_add]}\' Would you like to add y/n')
+                #     if y_or_n != 'y':
+                #         break
+                #     else:
+                #         a = removed_items(removed_item_to_add)
+                #         removed_items.remove(a)
+                #         groceries.append(removed_item_to_add)
+                #         print(groceries)
+                
+
             # Return Home
             else:
                 break 
@@ -125,10 +149,12 @@ while True:
             edit_items_choice = int(input(edit_items_sub_menu))
             # Displays List
             if edit_items_choice == 1:
+                print('The Current List:------')
                 for i in range(len(groceries)):
                     print(f'{i} - {groceries[i]}')
             # Edits a Single Item
             elif edit_items_choice == 2:
+                print('The Current List:------')
                 for i in range(len(groceries)):
                     print(f'{i} - {groceries[i]}')
                 item_to_edit = int(input('Which item number would you like to edit? '))
@@ -140,6 +166,7 @@ while True:
                     groceries[item_to_edit] = edited_item
             # Edits Multiple Items
             elif edit_items_choice == 3:
+                print('The Current List:------')
                 for i in range(len(groceries)):
                     print(f'{i} - {groceries[i]}')
                 starting_item_to_edit = int(input('Which item number would you like to start editing at? '))
@@ -160,10 +187,12 @@ while True:
             remove_item_choice = int(input(remove_items_sub_menu))
             # Displays List
             if remove_item_choice == 1:
+                print('The Current List:------')
                 for i in range(len(groceries)):
                     print(f'{i} - {groceries[i]}')
             # Remove a Single Item
             elif remove_item_choice == 2:
+                print('The Current List:------')
                 for i in range(len(groceries)):
                     print(f'{i} - {groceries[i]}')
                 item_to_remove = int(input('Which item number would you like to remove? '))
@@ -174,6 +203,7 @@ while True:
                     removed_items.append(groceries.pop(item_to_remove))
             # Remove Multiple Items
             elif remove_item_choice == 3:
+                print('The Current List:------')
                 for i in range(len(groceries)):
                     print(f'{i} - {groceries[i]}')
                 starting_item_to_remove = int(input('Which item number would you like to start removing at? '))
@@ -192,7 +222,7 @@ while True:
 
             # Print Removed Items List
             elif remove_item_choice == 4:
-                print('**Removed Items List**')
+                print('Removed Items List******')
                 for i in range(len(removed_items)):
                     print(f'{i} - {removed_items[i]}')
             # Return Home
