@@ -40,6 +40,7 @@ Update the "Print Items" output so that it shows whether or not an item has been
 
 
 groceries = ['some', 'things', 'in', 'here']
+removed_items = []
 
 main_menu = '''
 ---- Home Menu----
@@ -87,7 +88,7 @@ while True:
         for i in range(len(groceries)):
             print(f'{i} - {groceries[i]}')
         
-    # 2. Add Items
+    # 2. Add Items - brings up submenu
     elif menu_choice == 2:
         # Displays submenu and keeps user in submenu until break is met
         while True:
@@ -170,28 +171,30 @@ while True:
                 if y_or_n != 'y':
                     break
                 else:
-                    del groceries[item_to_remove]
+                    removed_items.append(groceries.pop(item_to_remove))
             # Remove Multiple Items
             elif remove_item_choice == 3:
                 for i in range(len(groceries)):
                     print(f'{i} - {groceries[i]}')
                 starting_item_to_remove = int(input('Which item number would you like to start removing at? '))
-                ending_item_to_remove = int(input('Which item number would you like to end removing at? '))
+                #ending_item_to_remove = int(input('Which item number would you like to end removing at? '))
                 # Cycle through, prompting the user to make edits while in predefined Slice
-                items_to_delete = []
-                while starting_item_to_remove <= ending_item_to_remove:
-                    y_or_n = input(f'You\'ve selected \'{groceries[starting_item_to_remove]}\' to remove is this correct y/n ')
+
+
+                while starting_item_to_remove <= len(groceries):
+                    y_or_n = input(f'You\'ve selected \'{groceries[starting_item_to_remove]}\' Would you like to remove y/n')
                     if y_or_n != 'y':
                         break
                     else:
-                        ###### NEED TO ADD TRY EXCEPT TO EXCEPT INDEXERROR - index out of range
-                        del groceries[starting_item_to_remove]
-                        print(groceries)
-                    starting_item_to_remove += 1
+                        removed_items.append(groceries.pop(starting_item_to_remove))
+                        
+                    
 
             # Print Removed Items List
             elif remove_item_choice == 4:
-                pass
+                print('**Removed Items List**')
+                for i in range(len(removed_items)):
+                    print(f'{i} - {removed_items[i]}')
             # Return Home
             elif remove_item_choice == 5:
                 break
