@@ -1,8 +1,15 @@
-# Basic Dictionary formating
+# DONT RUN THIS CODE # 
+# NOTE TAKING ONLY #
+####################
+# # Basic Dictionary formating
 friend = {
     'name': 'Elliot Alderson',
     'cell': '8675309',
-    'snack': ['popcorn', 'reeces pieces']
+    'snack': ['popcorn', 'reeces pieces'],
+    'cat': {'toys': 'this',
+            'treats': 'this',
+            'friends': 'these',
+            }
 }
 
 # Loops through dictionary and prints each corresponding key:value pair
@@ -61,5 +68,29 @@ friend['cell'] = 1234567
 
 #to create a new key and value to the existing friend dict.
 friend['cat'] = 'Mr Robot'
+
+
+
+
+#access dict inside anther dict
+print(friend['cat']['toys'])
+
+
+
+#to access a dictionary value in list of dictionaries
+friends = [friend1, friend2]
+#looks at the first index in friends list
+elliot = friends[0]
+#prints the 'cat' key in the friend1 dictionary
+print(elliot['cat'])
+
+
+#add dictionaries into an ongoing list
+list_of_dicts = []
+list_of_dicts.append(a_new_dict)
+
+#use everything you can use on lists on dictionaries
+#.get() .pop() .remove() del
+
 
 
